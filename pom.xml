@@ -106,7 +106,7 @@
             </activation>
             <properties>
                 <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
-                <sonar.organization>Mentoring</sonar.organization>
+                <sonar.organization>mentorshipprojects</sonar.organization>
                 <!--suppress UnresolvedMavenProperty -->
                 <sonar.login>${env.SONAR_TOKEN}</sonar.login>
                 <sonar.coverage.exclusions>**/*Launcher.java</sonar.coverage.exclusions>

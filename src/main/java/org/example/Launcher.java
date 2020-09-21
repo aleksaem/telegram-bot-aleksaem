@@ -15,6 +15,7 @@ public class Launcher {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         telegramBotsApi.registerBot(new TelegramBot());
+        // hello!
         log.info("Bot Started!");
     }
 }

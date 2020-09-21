@@ -5,12 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>telegram-bot-template</artifactId>
+    <artifactId>telegram-bot-itcluster</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>telegram-bot-template</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+    <name>telegram-bot-itcluster</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,56 +27,73 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
         </dependency>
+
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.13.2</version>
         </dependency>
     </dependencies>
 
     <build>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <pluginManagement>
             <plugins>
-                <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
                 <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
+                    <groupId>com.heroku.sdk</groupId>
+                    <artifactId>heroku-maven-plugin</artifactId>
                     <version>3.0.2</version>
+<!--                    <version>3.0.4</version>-->
+                    <configuration>
+                        <jdkVersion>11</jdkVersion>
+                        <appName>telegram-bot-itcluster</appName>
+                        <processTypes>
+                            <web>java $JAVA_OPTS -cp target/classes:target/dependency/* org.example.Launcher</web>
+                        </processTypes>
+                    </configuration>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>appassembler-maven-plugin</artifactId>
+                    <version>1.1.1</version>
+                    <configuration>
+                        <assembleDirectory>target</assembleDirectory>
+                        <programs>
+                            <program>
+                                <mainClass>org.example.Launcher</mainClass>
+                                <name>ITClusterDemoBot</name>
+                            </program>
+                        </programs>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>assemble</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-                <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.7.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
+<!--                <plugin>-->
+<!--                    <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                    <version>3.8.0</version>-->
+<!--                </plugin>-->
+<!--                <plugin>-->
+<!--                    <artifactId>maven-jar-plugin</artifactId>-->
+<!--                    <version>3.0.2</version>-->
+<!--                </plugin>-->
+<!--                <plugin>-->
+<!--                    <artifactId>maven-install-plugin</artifactId>-->
+<!--                    <version>2.5.2</version>-->
+<!--                </plugin>-->
+<!--                <plugin>-->
+<!--                    <artifactId>maven-deploy-plugin</artifactId>-->
+<!--                    <version>2.8.2</version>-->
+<!--                </plugin>-->
+<!--                &lt;!&ndash; site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle &ndash;&gt;-->
+<!--                <plugin>-->
+<!--                    <artifactId>maven-site-plugin</artifactId>-->
+<!--                    <version>3.7.1</version>-->
+<!--                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>

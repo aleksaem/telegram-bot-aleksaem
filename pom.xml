@@ -97,4 +97,20 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
+                <sonar.organization>Mentoring</sonar.organization>
+                <!--suppress UnresolvedMavenProperty -->
+                <sonar.login>${env.SONAR_TOKEN}</sonar.login>
+                <sonar.coverage.exclusions>**/*Launcher.java</sonar.coverage.exclusions>
+            </properties>
+        </profile>
+    </profiles>
 </project>
